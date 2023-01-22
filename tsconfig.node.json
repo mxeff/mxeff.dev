@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "types": ["@linaria/react", "preact", "preact/compat", "vite"],
+        "target": "ESNext"
+    },
+    "include": ["esbuild", "vite", "vite.config.ts", "types"]
+}
