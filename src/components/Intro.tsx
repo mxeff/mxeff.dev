@@ -1,7 +1,14 @@
 import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
+import { define } from 'preactement/es5';
 import Container from './Container';
 import Row from './Row';
+
+const YouSpinMyHeadRightRoundComponent = define(
+    'you-spin-my-head-right-round',
+    // eslint-disable-next-line react/display-name
+    () => () => null
+);
 
 const containerClass = css`
     display: grid;
@@ -12,20 +19,37 @@ const containerClass = css`
 const rowClass = css`
     align-items: center;
     grid-row: 2;
-`;
-
-const AnimatedImage = styled.img`
-    image-rendering: pixelated;
+    min-height: 33rem;
 `;
 
 const LeftColumn = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     grid-column: 2 / 5;
     margin: -3rem;
+    position: relative;
+
+    > * {
+        width: 100%;
+        z-index: 2;
+    }
+
+    ::before {
+        display: inline-block;
+        content: '';
+        background-image: url(${require('../../public/images/pattern.webp')});
+        width: 100%;
+        padding-top: 100%;
+        position: absolute;
+        transform: rotate(-15deg);
+    }
 `;
 
 const RightColumn = styled.div`
-    grid-column: 5 / -2;
+    grid-column: 6 / -2;
     margin-left: -1.5rem;
+    position: relative;
 `;
 
 const Logo = styled.img`
@@ -39,17 +63,19 @@ const Intro = () => {
         <Container class={containerClass}>
             <Row class={rowClass}>
                 <LeftColumn>
-                    <AnimatedImage
-                        alt=""
-                        src="/images/you-spin-my-head-right-round.gif"
-                    />
+                    <YouSpinMyHeadRightRoundComponent />
                 </LeftColumn>
                 <RightColumn>
                     <h1>
                         Senior frontend developer and media designer by trade w/
                         years of expertise – still learning everyday from lovely
                         people.
-                        <Logo alt="mxeff" src="/images/logo.svg" />
+                        <Logo
+                            alt="mxeff"
+                            src="/images/logo.svg"
+                            width="90"
+                            height="30"
+                        />
                     </h1>
                 </RightColumn>
             </Row>
