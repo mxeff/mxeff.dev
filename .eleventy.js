@@ -1,6 +1,5 @@
-const { isValidElement } = require('preact');
+const { createElement, isValidElement } = require('preact');
 const { render } = require('preact-render-to-string');
-const decache = require('decache');
 
 /** @param {import("@11ty/eleventy").UserConfig} config */
 module.exports = (config) => {
@@ -13,14 +12,14 @@ module.exports = (config) => {
                         : permalink;
                 }
 
-                decache(path);
+                delete require.cache[require.resolve(path)];
 
                 const module = require(path);
 
-                const vnode = module.default;
+                const vnode = createElement(module.default);
 
-                if (isValidElement(vnode())) {
-                    return render(vnode());
+                if (isValidElement(vnode)) {
+                    return render(vnode);
                 }
             };
         },
