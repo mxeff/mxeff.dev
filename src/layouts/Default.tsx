@@ -13,6 +13,11 @@ const Default = ({ children, entryPath, title }: Props) => {
             <head>
                 <meta charSet="utf-8" />
                 <title>{title}</title>
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                />
+                <link href="/favicon.png" rel="shortcut icon" />
                 <link
                     href={path.resolve(
                         process.env.PWD ?? '',
